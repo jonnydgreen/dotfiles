@@ -2,6 +2,23 @@
 
 Terminal config for sharing dotfiles across devices
 
+## Installation
+
+Clone this repo somewhere in your filesystem:
+
+```bash
+git clone https://github.com/projectjudge/dotfiles.git
+```
+
+To install a module, follow the instructions defined below. Note, some have dependencies so take care when installing.
+
+## Modules
+
+1. [Git](#git)
+2. [Zsh](#zsh)
+3. [Prezto](#prezto)
+4. [Updating](#updating)
+
 ## Git
 
 ### Setup git
@@ -26,7 +43,7 @@ export DOTFILES_DIR=/path/to/dotfiles/repo
 
 ## Prezto
 
-### Prezto Prerequisites
+### Prezto prerequisites
 
 * zsh
 
@@ -40,7 +57,7 @@ export ZDOTDIR=$DOTFILES_DIR # Be sure to leave off the trailing slash
 
 ## Updating
 
-### Prerequisites
+### Updating prerequisites
 
 * zsh
 
