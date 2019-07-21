@@ -1,6 +1,6 @@
 # dotfiles
 
-Terminal config for sharing dotfiles across devices
+Repo of dotfiles that can be shared across devices
 
 ## Installation
 
