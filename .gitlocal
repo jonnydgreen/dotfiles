@@ -2,6 +2,7 @@
 	helper = osxkeychain
 [core]
 	excludesfile = ~/.gitignore
+  editor = vim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
