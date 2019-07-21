@@ -1,6 +1,6 @@
 # dotfiles
 
-Repo of dotfiles that can be shared across devices
+Dotfile config that can be shared across devices
 
 ## Installation
 
