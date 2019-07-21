@@ -3,6 +3,19 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+unsetopt beep
+# End of lines configured by zsh-newuser-install
+
+# The following lines were added by compinstall
+zstyle :compinstall filename '~/.zshrc'
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
 # Add env.sh
 source $HOME/.bash_profile
 
@@ -22,6 +35,15 @@ alias w="watch -n"
 alias 'cd..'='cd_up';
 alias n="npm run"
 alias npr="npm run"
+alias dc="docker-compose"
+alias fz="exec zsh -l"
+alias y="yarn"
+alias g="git"
+alias k="kubectl"
+alias wpods="watch -n1 kubectl get pods --all-namespaces"
+alias npr="npm run"
+alias n="npm run"
+alias vl="vault-login"
 
 # GOLANG
 export GO111MODULE="on"
@@ -30,17 +52,17 @@ export GO111MODULE="on"
 bindkey -e
 
 # PATH
-export PATH="$PATH:$HOME/developer/bin/:"
+export PATH="$PATH:$HOME/developer/bin"
 export PATH="/usr/local/opt/python/libexec/bin:${PATH}:"
 export PATH=$PATH:/usr/local/share/dotnet
 export PATH=$PATH:$GOBIN
 export PATH="$HOME/.rbenv/bin:$PATH"
 
-# Nodenv
-eval "$(nodenv init -)"
-
 # AWS
 export AWS_DEFAULT_REGION=eu-west-2
+if [[ -s "/usr/local/bin/aws_zsh_completer.sh" ]]; then
+  source /usr/local/bin/aws_zsh_completer.sh
+fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '$HOME/developer/bin/google-cloud-sdk/path.zsh.inc' ]; then source '$HOME/developer/bin/google-cloud-sdk/path.zsh.inc'; fi
@@ -56,6 +78,41 @@ export RBENV_VERSION=2.5.3
 
 # Now
 export NOW_TOKEN_DIR=$HOME/.now
+
+# Flyway
+export PATH=$PATH:$HOME/developer/bin/5.1.4-flyway
+
+# Kubernetes
+export KUBE_EDITOR="vim"
+source <(kubectl completion zsh)
+source <(helm completion zsh)
+
+# Helmenv
+export PATH="$HOME/.helmenv/bin:$PATH"
+
+# Vault
+if [[ -s "~/developer/bin/vault" ]]; then
+  autoload -U +X bashcompinit && bashcompinit
+  complete -o nospace -C ~/developer/bin/vault vault
+fi
+
+# Android studio SDK
+export ANDROID_HOME=/usr/local/share/android-sdk
+export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
+export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+# Brigade
+export PATH=$PATH:$GOPATH/src/github.com/Azure/Brigade/bin
+
+# Golang
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$GOPATH/bin
+
+# GNU Tar
+export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+
+# Nodenv
+eval "$(nodenv init -)"
 
 # Clear the terminal
 clear
