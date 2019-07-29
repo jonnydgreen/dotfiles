@@ -47,7 +47,7 @@ alias vl="vault-login"
 alias dotfiles-update="cd $DOTFILES_DIR && git checkout master && git pull"
 
 # GOLANG
-export GO111MODULE="on"
+# export GO111MODULE="on"
 
 # Emacs key binding
 bindkey -e
