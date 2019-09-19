@@ -112,6 +112,9 @@ export PATH=$PATH:$GOPATH/bin
 # GNU Tar
 export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 
+# OpenSSL
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+
 # Nodenv
 eval "$(nodenv init -)"
 
