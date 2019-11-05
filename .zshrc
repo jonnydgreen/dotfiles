@@ -66,9 +66,9 @@ if [[ -s "/usr/local/bin/aws_zsh_completer.sh" ]]; then
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '$HOME/developer/bin/google-cloud-sdk/path.zsh.inc' ]; then source '$HOME/developer/bin/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/developer/bin/google-cloud-sdk/path.zsh.inc" ]; then source $HOME/developer/bin/google-cloud-sdk/path.zsh.inc; fi
 # The next line enables shell command completion for gcloud.
-if [ -f '$HOME/developer/bin/google-cloud-sdk/completion.zsh.inc' ]; then source '$HOME/developer/bin/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/developer/bin/google-cloud-sdk/completion.zsh.inc" ]; then source $HOME/developer/bin/google-cloud-sdk/completion.zsh.inc; fi
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
