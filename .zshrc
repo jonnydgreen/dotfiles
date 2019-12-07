@@ -44,6 +44,8 @@ alias wpods="watch -n1 kubectl get pods --all-namespaces"
 alias npr="npm run --"
 alias n="npm run --"
 alias vl="vault-login"
+alias v="vim"
+alias rf="rm -rf"
 alias dotfiles-update="cd $DOTFILES_DIR && git checkout master && git pull"
 
 # GOLANG
