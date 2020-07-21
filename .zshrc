@@ -33,16 +33,14 @@ alias ll="ls -hal"
 alias lt="ls -halt"
 alias w="watch -n"
 alias 'cd..'='cd_up';
-alias n="npm run"
-alias npr="npm run"
+alias n="npm run --"
+alias npr="npm run --"
 alias dc="docker-compose"
 alias fz="exec zsh -l"
 alias y="yarn"
 alias g="git"
 alias k="kubectl"
 alias wpods="watch -n1 kubectl get pods --all-namespaces"
-alias npr="npm run"
-alias n="npm run"
 alias vl="vault-login"
 alias dotfiles-update="cd $DOTFILES_DIR && git checkout master && git pull"
 
@@ -117,6 +115,9 @@ export PATH="/usr/local/opt/openssl/bin:$PATH"
 
 # Nodenv
 eval "$(nodenv init -)"
+
+# Minikube
+eval "$(minikube completion zsh)"
 
 # Clear the terminal
 clear
