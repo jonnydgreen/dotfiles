@@ -42,6 +42,8 @@ alias g="git"
 alias k="kubectl"
 alias wpods="watch -n1 kubectl get pods --all-namespaces"
 alias vl="vault-login"
+alias v="vim"
+alias rf="rm -rf"
 alias dotfiles-update="cd $DOTFILES_DIR && git checkout master && git pull"
 
 # GOLANG
@@ -56,6 +58,7 @@ export PATH="/usr/local/opt/python/libexec/bin:${PATH}:"
 export PATH=$PATH:/usr/local/share/dotnet
 export PATH=$PATH:$GOBIN
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$PATH:$HOME/developer/bin/google-cloud-sdk/bin"
 
 # AWS
 export AWS_DEFAULT_REGION=eu-west-2
@@ -113,7 +116,11 @@ export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 # OpenSSL
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
+# Scaffold
+export SKAFFOLD_UPDATE_CHECK=false
+
 # Nodenv
+export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig/
 eval "$(nodenv init -)"
 
 # Minikube
