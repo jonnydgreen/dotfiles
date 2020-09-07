@@ -39,6 +39,7 @@ alias dc="docker-compose"
 alias fz="exec zsh -l"
 alias y="yarn"
 alias g="git"
+alias gfl="git-flow"
 alias k="kubectl"
 alias wpods="watch -n1 kubectl get pods --all-namespaces"
 alias vl="vault-login"
@@ -125,6 +126,9 @@ eval "$(nodenv init -)"
 
 # Minikube
 eval "$(minikube completion zsh)"
+
+# Git Flow
+source $DOTFILES_DIR/git-flow-completion.zsh
 
 # Clear the terminal
 clear
