@@ -2,10 +2,13 @@
 	helper = osxkeychain
 [core]
 	excludesfile = ~/.gitignore
-  editor = vim
+  	editor = vim
+	autocrlf = input
+	longpaths = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
+	prompt = false
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
@@ -14,9 +17,17 @@
 [alias]
 	st = status
 	co = checkout
-  glog = log --color --graph --all --decorate=full
-  pl = pull
-  ph = push
+  	glog = log --color --graph --all --decorate=full
+  	pl = pull
+  	ph = push
+	out = !git log origin/master..HEAD
+	pushb = !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+	pp = !git pushb
+	repository-name = !sh -c 'basename -s .git $(git config --get remote.origin.url)'
+	lab = !sh -c '\"/c/Program Files/Mozilla Firefox/firefox.exe\" $(git remote get-url origin | sed \"s|\\.git||g\" | sed \"s|:|/|g\" | sed \"s|git@|https://|g\")\"/commits/\"$(git rev-parse --abbrev-ref HEAD)'
+	hub = !sh -c '\"/c/Program Files/Mozilla Firefox/firefox.exe\" https://github.com/Unity-Technologies/$(git repository-name)/tree/$(git rev-parse --abbrev-ref HEAD)'
+	changes=!sh -c 'LAST_TAG=`git describe --abbrev=0 --tags` && git log --date=short --pretty=format:\"%ad %h %s\" $LAST_TAG..'
+	name=!sh -c
 [apply]
 	whitespace = nowarn
 [filter "lfs"]
@@ -24,3 +35,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[diff]
+	renameLimit=3000

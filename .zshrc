@@ -17,7 +17,7 @@ compinit
 # End of lines added by compinstall
 
 # Add env.sh
-source $HOME/.bash_profile
+if [ -f "$HOME/.bash_profile" ]; then source $HOME/.bash_profile; fi
 
 # Exercism
 if [ -f ~/.config/exercism/exercism_completion.zsh ]; then
@@ -47,9 +47,6 @@ alias v="vim"
 alias rf="rm -rf"
 alias dotfiles-update="cd $DOTFILES_DIR && git checkout master && git pull"
 
-# GOLANG
-# export GO111MODULE="on"
-
 # Emacs key binding
 bindkey -e
 
@@ -62,7 +59,6 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$PATH:$HOME/developer/bin/google-cloud-sdk/bin"
 
 # AWS
-export AWS_DEFAULT_REGION=eu-west-2
 if [[ -s "/usr/local/bin/aws_zsh_completer.sh" ]]; then
   source /usr/local/bin/aws_zsh_completer.sh
 fi
@@ -73,43 +69,68 @@ if [ -f "$HOME/developer/bin/google-cloud-sdk/path.zsh.inc" ]; then source $HOME
 if [ -f "$HOME/developer/bin/google-cloud-sdk/completion.zsh.inc" ]; then source $HOME/developer/bin/google-cloud-sdk/completion.zsh.inc; fi
 
 # add Pulumi to the PATH
-export PATH=$PATH:$HOME/.pulumi/bin
+if command -v pulumi &> /dev/null; then
+  export PATH=$PATH:$HOME/.pulumi/bin
+fi
 
-# rbenv
-eval "$(rbenv init -)"
-export RBENV_VERSION=2.5.3
+# Rbenv
+if command -v rbenv &> /dev/null; then
+  eval "$(rbenv init -)"
+  export RBENV_VERSION=2.5.3
+fi
 
 # Now
-export NOW_TOKEN_DIR=$HOME/.now
+if command -v now &> /dev/null; then
+  export NOW_TOKEN_DIR=$HOME/.now
+fi
 
 # Flyway
-export PATH=$PATH:$HOME/developer/bin/5.1.4-flyway
+if [[ -s "$HOME/developer/bin/5.1.4-flyway" ]]; then
+  export PATH=$PATH:$HOME/developer/bin/5.1.4-flyway
+fi
 
-# Kubernetes
-export KUBE_EDITOR="vim"
-source <(kubectl completion zsh)
-source <(helm completion zsh)
+# Kubectl
+if command -v kubectl &> /dev/null; then
+  export KUBE_EDITOR="vim"
+  source <(kubectl completion zsh)
+fi
 
 # Helmenv
-export PATH="$HOME/.helmenv/bin:$PATH"
+if [[ -s "$HOME/.helmenv/bin/helmenv" ]]; then
+  export PATH="$HOME/.helmenv/bin:$PATH"
+fi
+
+# Helm
+if command -v helm &> /dev/null; then
+  source <(helm completion zsh)
+fi
 
 # Vault
-if [[ -s "~/developer/bin/vault" ]]; then
+if command -v vault &> /dev/null; then
   autoload -U +X bashcompinit && bashcompinit
   complete -o nospace -C ~/developer/bin/vault vault
 fi
 
 # Android studio SDK
-export ANDROID_HOME=/usr/local/share/android-sdk
-export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
-export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-
-# Brigade
-export PATH=$PATH:$GOPATH/src/github.com/Azure/Brigade/bin
+if [[ -s "/usr/local/share/android-sdk" ]]; then
+  export ANDROID_HOME=/usr/local/share/android-sdk
+  export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
+  export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+fi
 
 # Golang
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$GOPATH/bin
+if [[ -s "/usr/local/go/bin" ]]; then
+  export PATH=$PATH:/usr/local/go/bin
+  export GO111MODULE="on"
+fi
+if command -v go &> /dev/null; then
+  export PATH=$PATH:$GOPATH/bin
+fi
+
+# Brigade
+if [[ -s "$GOPATH/src/github.com/Azure/Brigade/bin/brigade" ]]; then
+  export PATH=$PATH:$GOPATH/src/github.com/Azure/Brigade/bin
+fi
 
 # GNU Tar
 export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
@@ -117,18 +138,33 @@ export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 # OpenSSL
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
-# Scaffold
-export SKAFFOLD_UPDATE_CHECK=false
+# Skaffold
+if command -v skaffold &> /dev/null; then
+  export SKAFFOLD_UPDATE_CHECK=false
+fi
 
 # Nodenv
-export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig/
-eval "$(nodenv init -)"
+if command -v nodenv &> /dev/null; then
+  export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig/
+  eval "$(nodenv init -)"
+fi
+
+# NVM
+if command -v nvm &> /dev/null; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
 
 # Minikube
-eval "$(minikube completion zsh)"
+if command -v minikube &> /dev/null; then
+  eval "$(minikube completion zsh)"
+fi
 
 # Git Flow
-source $DOTFILES_DIR/git-flow-completion.zsh
+if command -v git-flow &> /dev/null; then
+  source $DOTFILES_DIR/git-flow-completion.zsh
+fi
 
 # Clear the terminal
 clear
