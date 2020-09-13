@@ -10,4 +10,5 @@ Official documentation for [Pre-commit](https://pre-commit.com/#install)
 
 ```bash
 pre-commit install
+pre-commit install --hook-type commit-msg
 ```
