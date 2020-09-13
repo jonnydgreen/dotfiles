@@ -1,19 +1,27 @@
 [credential]
 	helper = osxkeychain
+
 [core]
 	excludesfile = ~/.gitignore
   	editor = vim
 	autocrlf = input
 	longpaths = true
+
+[pull]
+	ff = only
+
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
 	prompt = false
+
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+
 [commit]
 	template = ~/.stCommitMsg
+
 [alias]
 	st = status
 	co = checkout
@@ -28,12 +36,17 @@
 	hub = !sh -c '\"/c/Program Files/Mozilla Firefox/firefox.exe\" https://github.com/Unity-Technologies/$(git repository-name)/tree/$(git rev-parse --abbrev-ref HEAD)'
 	changes=!sh -c 'LAST_TAG=`git describe --abbrev=0 --tags` && git log --date=short --pretty=format:\"%ad %h %s\" $LAST_TAG..'
 	name=!sh -c
+
 [apply]
 	whitespace = nowarn
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [diff]
 	renameLimit=3000
+[diff "sopsdiffer"]
+	textconv = sops -d

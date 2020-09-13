@@ -13,9 +13,15 @@
     "statusBarItem.hoverBackground": "#2f7c47",
     "statusBar.foreground": "#e7e7e7",
     "activityBar.activeBackground": "#2f7c47",
-    "activityBar.activeBorder": "#422c74",
-    "statusBar.border": "#215732",
-    "titleBar.border": "#215732"
+    "activityBar.activeBorder": "#422c74"
   },
-  "peacock.color": "#215732"
+  "peacock.color": "#215732",
+  "cSpell.words": [
+    "Dotfile",
+    "ZDOTDIR",
+    "dotfiles",
+    "prezto",
+    "projectjudge",
+    "zprezto"
+  ]
 }
