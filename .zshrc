@@ -89,12 +89,6 @@ if [[ -s "$HOME/developer/bin/5.1.4-flyway" ]]; then
   export PATH=$PATH:$HOME/developer/bin/5.1.4-flyway
 fi
 
-# Kubectl
-if command -v kubectl &> /dev/null; then
-  export KUBE_EDITOR="vim"
-  source <(kubectl completion zsh)
-fi
-
 # Helmenv
 if [[ -s "$HOME/.helmenv/bin/helmenv" ]]; then
   export PATH="$HOME/.helmenv/bin:$PATH"
@@ -164,6 +158,12 @@ fi
 # Git Flow
 if command -v git-flow &> /dev/null; then
   source $DOTFILES_DIR/git-flow-completion.zsh
+fi
+
+# Kubectl
+if command -v kubectl &> /dev/null; then
+  export KUBE_EDITOR="vim"
+  source <(kubectl completion zsh)
 fi
 
 # Clear the terminal

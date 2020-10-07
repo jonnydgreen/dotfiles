@@ -25,9 +25,9 @@
 [alias]
 	st = status
 	co = checkout
-  	glog = log --color --graph --all --decorate=full
-  	pl = pull
-  	ph = push
+	glog = log --color --graph --all --decorate=full
+	pl = pull
+	ph = push
 	out = !git log origin/master..HEAD
 	pushb = !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 	pp = !git pushb
@@ -36,6 +36,10 @@
 	hub = !sh -c '\"/c/Program Files/Mozilla Firefox/firefox.exe\" https://github.com/Unity-Technologies/$(git repository-name)/tree/$(git rev-parse --abbrev-ref HEAD)'
 	changes=!sh -c 'LAST_TAG=`git describe --abbrev=0 --tags` && git log --date=short --pretty=format:\"%ad %h %s\" $LAST_TAG..'
 	name=!sh -c
+	pruneb=!sh -c 'git checkout master && git pull && git remote prune origin && git branch --format=\"%(if:equals=gone)%(upstream:track,nobracket)%(then)%(refname:short)%(end)\" | grep \".\" | xargs git branch -D'
+	feat=!sh -c 'gh pr create -l feature'
+	bug=!sh -c 'gh pr create -l bug'
+	release=!sh -c 'gh pr create -l release'
 
 [apply]
 	whitespace = nowarn
