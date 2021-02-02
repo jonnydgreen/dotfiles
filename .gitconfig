@@ -41,6 +41,7 @@
 	feat=!sh -c 'gh pr create -l feature'
 	bug=!sh -c 'gh pr create -l bug'
 	release=!sh -c 'gh pr create -l release'
+  sync-fork=!sh -c 'git fetch upstream && git checkout master && git merge upstream/master'
 
 [apply]
 	whitespace = nowarn
