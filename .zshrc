@@ -58,17 +58,22 @@ export PATH="/usr/local/opt/python/libexec/bin:${PATH}:"
 export PATH=$PATH:/usr/local/share/dotnet
 export PATH=$PATH:$GOBIN
 export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$PATH:$HOME/developer/bin/google-cloud-sdk/bin"
+
+# ASDF
+if command -v asdf &> /dev/null; then
+  source /usr/local/opt/asdf/libexec/asdf.sh
+fi
 
 # AWS
 if [[ -s "/usr/local/bin/aws_zsh_completer.sh" ]]; then
   source /usr/local/bin/aws_zsh_completer.sh
 fi
 
+# GCloud
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/developer/bin/google-cloud-sdk/path.zsh.inc" ]; then source $HOME/developer/bin/google-cloud-sdk/path.zsh.inc; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then source $HOME/google-cloud-sdk/path.zsh.inc; fi
 # The next line enables shell command completion for gcloud.
-if [ -f "$HOME/developer/bin/google-cloud-sdk/completion.zsh.inc" ]; then source $HOME/developer/bin/google-cloud-sdk/completion.zsh.inc; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source $HOME/google-cloud-sdk/completion.zsh.inc; fi
 
 # Add Pulumi to the PATH
 if command -v pulumi &> /dev/null; then
@@ -153,11 +158,6 @@ fi
 if command -v kubectl &> /dev/null; then
   export KUBE_EDITOR="vim"
   source <(kubectl completion zsh)
-fi
-
-# ASDF
-if command -v asdf &> /dev/null; then
-  source /usr/local/opt/asdf/libexec/asdf.sh
 fi
 
 # Deno
