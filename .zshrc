@@ -139,40 +139,6 @@ if command -v skaffold &> /dev/null; then
   export SKAFFOLD_UPDATE_CHECK=false
 fi
 
-# Nodenv
-if command -v nodenv &> /dev/null; then
-  export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig/
-  eval "$(nodenv init -)"
-fi
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
-[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
-if command -v nvm &> /dev/null; then
-  # Place this after nvm initialization!
-  autoload -U add-zsh-hook
-  load-nvmrc() {
-    local node_version="$(nvm version)"
-    local nvmrc_path="$(nvm_find_nvmrc)"
-
-    if [ -n "$nvmrc_path" ]; then
-      local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-      if [ "$nvmrc_node_version" = "N/A" ]; then
-        nvm install
-      elif [ "$nvmrc_node_version" != "$node_version" ]; then
-        nvm use
-      fi
-    elif [ "$node_version" != "$(nvm version default)" ]; then
-      echo "Reverting to nvm default version"
-      nvm use default
-    fi
-  }
-  add-zsh-hook chpwd load-nvmrc
-  load-nvmrc
-fi
-
 # Minikube
 if command -v minikube &> /dev/null; then
   eval "$(minikube completion zsh)"
@@ -188,6 +154,16 @@ if command -v kubectl &> /dev/null; then
   export KUBE_EDITOR="vim"
   source <(kubectl completion zsh)
 fi
+
+# ASDF
+if command -v asdf &> /dev/null; then
+  source /usr/local/opt/asdf/libexec/asdf.sh
+fi
+
+# Deno
+export DENO_INSTALL_ROOT="${HOME}/.deno"
+mkdir -p "${DENO_INSTALL_ROOT}"
+export PATH="${DENO_INSTALL_ROOT}/bin:$PATH"
 
 # Clear the terminal
 clear
