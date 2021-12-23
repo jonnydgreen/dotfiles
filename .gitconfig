@@ -7,6 +7,9 @@
 	autocrlf = input
 	longpaths = true
 
+[init]
+  defaultBranch = main
+
 [pull]
 	ff = only
 
