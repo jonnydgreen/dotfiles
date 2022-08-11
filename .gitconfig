@@ -31,7 +31,7 @@
 	glog = log --color --graph --all --decorate=full
 	pl = pull
 	ph = push
-	out = !git log origin/master..HEAD
+	out = !git log origin/main..HEAD
 	pushb = !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 	pp = !git pushb
 	repository-name = !sh -c 'basename -s .git $(git config --get remote.origin.url)'
@@ -39,14 +39,12 @@
 	hub = !sh -c '\"/c/Program Files/Mozilla Firefox/firefox.exe\" https://github.com/Unity-Technologies/$(git repository-name)/tree/$(git rev-parse --abbrev-ref HEAD)'
 	changes=!sh -c 'LAST_TAG=`git describe --abbrev=0 --tags` && git log --date=short --pretty=format:\"%ad %h %s\" $LAST_TAG..'
 	name=!sh -c
-	prn=!sh -c 'git checkout master && git pull && git remote prune origin && git branch --format=\"%(if:equals=gone)%(upstream:track,nobracket)%(then)%(refname:short)%(end)\" | grep \".\" | xargs git branch -D'
-        pruneb=!sh -c 'git checkout master && git pull && git remote prune origin && git branch --format=\"%(if:equals=gone)%(upstream:track,nobracket)%(then)%(refname:short)%(end)\" | grep \".\" | xargs git branch -D'
-	pruneb-main=!sh -c 'git checkout main && git pull && git remote prune origin && git branch --format=\"%(if:equals=gone)%(upstream:track,nobracket)%(then)%(refname:short)%(end)\" | grep \".\" | xargs git branch -D'
+	prn=!sh -c 'git checkout main && git pull && git remote prune origin && git branch --format=\"%(if:equals=gone)%(upstream:track,nobracket)%(then)%(refname:short)%(end)\" | grep \".\" | xargs git branch -D'
+	pruneb=!sh -c 'git checkout main && git pull && git remote prune origin && git branch --format=\"%(if:equals=gone)%(upstream:track,nobracket)%(then)%(refname:short)%(end)\" | grep \".\" | xargs git branch -D'
 	feat=!sh -c 'gh pr create -l feature'
 	bug=!sh -c 'gh pr create -l bug'
 	release=!sh -c 'gh pr create -l release'
-        sync-fork=!sh -c 'git fetch upstream && git checkout master && git merge upstream/master'
-        sync-fork-main=!sh -c 'git fetch upstream && git checkout main && git merge upstream/main'
+  sync-fork=!sh -c 'git fetch upstream && git checkout main && git merge upstream/main'
 
 [apply]
 	whitespace = nowarn

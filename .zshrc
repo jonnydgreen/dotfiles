@@ -47,7 +47,8 @@ alias wpods="watch -n1 kubectl get pods --all-namespaces"
 alias vl="vault-login"
 alias v="vim"
 alias rf="rm -rf"
-alias dotfiles-update="cd $DOTFILES_DIR && git checkout master && git pull"
+alias dotfiles-update="cd $DOTFILES_DIR && git checkout main && git pull"
+alias dt="deno task"
 
 # Emacs key binding
 bindkey -e
@@ -117,15 +118,6 @@ if [[ -s "/usr/local/share/android-sdk" ]]; then
   export ANDROID_HOME=/usr/local/share/android-sdk
   export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
   export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-fi
-
-# Golang
-if [[ -s "/usr/local/go/bin" ]]; then
-  export PATH=$PATH:/usr/local/go/bin
-  export GO111MODULE="on"
-fi
-if command -v go &> /dev/null; then
-  export PATH=$PATH:$GOPATH/bin
 fi
 
 # Brigade
