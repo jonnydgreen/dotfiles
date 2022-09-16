@@ -24,6 +24,7 @@
 
 [commit]
 	template = ~/.stCommitMsg
+	gpgsign = true
 
 [alias]
 	st = status
