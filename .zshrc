@@ -35,7 +35,7 @@ alias w="watch -n"
 alias 'cd..'='cd_up';
 alias n="npm run --"
 alias npr="npm run --"
-alias dc="docker-compose"
+alias dc="docker compose"
 alias fz="exec zsh -l"
 alias y="yarn"
 alias yw="yarn workspace"
@@ -49,6 +49,7 @@ alias v="vim"
 alias rf="rm -rf"
 alias dotfiles-update="cd $DOTFILES_DIR && git checkout main && git pull"
 alias dt="deno task"
+alias uuidgen-lower="uuidgen | tr '[:upper:]' '[:lower:]'"
 
 # Emacs key binding
 bindkey -e
@@ -61,8 +62,8 @@ export PATH=$PATH:$GOBIN
 export PATH="$HOME/.rbenv/bin:$PATH"
 
 # ASDF
-if command -v asdf &> /dev/null; then
-  source /usr/local/opt/asdf/libexec/asdf.sh
+if [[ -s "$HOME/.asdf/asdf.sh" ]]; then
+  . "$HOME/.asdf/asdf.sh"
 fi
 
 # AWS

@@ -37,7 +37,6 @@
 	pp = !git pushb
 	repository-name = !sh -c 'basename -s .git $(git config --get remote.origin.url)'
 	lab = !sh -c '\"/c/Program Files/Mozilla Firefox/firefox.exe\" $(git remote get-url origin | sed \"s|\\.git||g\" | sed \"s|:|/|g\" | sed \"s|git@|https://|g\")\"/commits/\"$(git rev-parse --abbrev-ref HEAD)'
-	hub = !sh -c '\"/c/Program Files/Mozilla Firefox/firefox.exe\" https://github.com/Unity-Technologies/$(git repository-name)/tree/$(git rev-parse --abbrev-ref HEAD)'
 	changes=!sh -c 'LAST_TAG=`git describe --abbrev=0 --tags` && git log --date=short --pretty=format:\"%ad %h %s\" $LAST_TAG..'
 	name=!sh -c
 	prn=!sh -c 'git checkout main && git pull && git remote prune origin && git branch --format=\"%(if:equals=gone)%(upstream:track,nobracket)%(then)%(refname:short)%(end)\" | grep \".\" | xargs git branch -D'
