@@ -61,6 +61,12 @@ export PATH=$PATH:/usr/local/share/dotnet
 export PATH=$PATH:$GOBIN
 export PATH="$HOME/.rbenv/bin:$PATH"
 
+# Godot
+export GODOT_PATH="/Applications/Godot.app/Contents/MacOS"
+if [[ -s "$GODOT_PATH/Godot" ]]; then
+  export PATH="$PATH:$GODOT_PATH"
+fi
+
 # ASDF
 if [[ -s "$HOME/.asdf/asdf.sh" ]]; then
   . "$HOME/.asdf/asdf.sh"
