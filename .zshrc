@@ -83,6 +83,9 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 # Git
 if command -v lazygit &> /dev/null;then
   alias gg="lazygit"
+  if [[ -s "$DOTFILES_DIR" ]]; then
+    export XDG_CONFIG_HOME="$DOTFILES_DIR"
+  fi
 fi
 
 # Godot
