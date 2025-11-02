@@ -27,12 +27,23 @@ fi
 # Functions
 cd_up() {cd $(printf "%0.s../" $(seq 1 $1 )); }
 
+jump_to() {
+  local -r current_path=$(pwd)
+  cd $1
+
+  local -r target_path=$(fd . --type directory | fzf)
+  if [[ $target_path="" ]]; then
+    cd "${current_path}"
+  else
+    cd "${target_path}"
+  fi
+}
+
 # Aliases
 alias gits="git status"
 alias ll="ls -hal"
 alias lt="ls -halt"
 alias w="watch -n"
-alias 'cd..'='cd_up';
 alias n="npm run --"
 alias npr="npm run --"
 alias dc="docker compose"
@@ -49,7 +60,15 @@ alias v="vim"
 alias rf="rm -rf"
 alias dotfiles-update="cd $DOTFILES_DIR && git checkout main && git pull"
 alias dt="deno task"
+alias d="deno"
+alias p="pnpm run --"
 alias uuidgen-lower="uuidgen | tr '[:upper:]' '[:lower:]'"
+alias bbi="cd && brew bundle install --cleanup && cd -"
+alias 'cd..'='cd_up';
+
+# Editor
+export EDITOR="code"
+export KUBE_EDITOR='code --wait'
 
 # Emacs key binding
 bindkey -e
@@ -60,6 +79,11 @@ export PATH="/usr/local/opt/python/libexec/bin:${PATH}:"
 export PATH=$PATH:/usr/local/share/dotnet
 export PATH=$PATH:$GOBIN
 export PATH="$HOME/.rbenv/bin:$PATH"
+
+# Git
+if command -v lazygit &> /dev/null;then
+  alias gg="lazygit"
+fi
 
 # Godot
 export GODOT_PATH="/Applications/Godot.app/Contents/MacOS"
@@ -159,10 +183,53 @@ if command -v kubectl &> /dev/null; then
   source <(kubectl completion zsh)
 fi
 
+# zulu
+if [ -d "/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home" ]; then
+  export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
+fi
+
+# Android
+if [ -d "$HOME/Library/Android/sdk" ]; then
+  export ANDROID_HOME="$HOME/Library/Android/sdk"
+  export PATH="$PATH:$ANDROID_HOME/emulator"
+  export PATH="$PATH:$ANDROID_HOME/platform-tools"
+fi
+
 # Deno
 export DENO_INSTALL_ROOT="${HOME}/.deno"
 mkdir -p "${DENO_INSTALL_ROOT}"
 export PATH="${DENO_INSTALL_ROOT}/bin:$PATH"
+
+# fzf
+if command -v fzf &> /dev/null; then
+  # Key bindings and auto-completion for fzf
+  # ctrl+r -> search history with fzf
+  # ctrl+t -> search current directory
+  source <(fzf --zsh)
+  FZF_THEME="--color='bg+:-1,fg+:-1,fg:#AEACAA,fg+:#FFFBF6'"
+  export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --extended ${FZF_THEME}"
+  export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow --exclude .git"
+  export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
+  export FZF_ALT_C_COMMAND="fd --type directory --hidden"
+fi
+
+# eza
+if command -v eza &> /dev/null; then
+  # General use
+  alias ls='eza -1'                                                                      # 1 column just names
+  alias l='eza -lbF --git'                                                               # list, size, type, git
+  alias ll='eza -lbhHigUmuSa --time-style=long-iso --git --color-scale'                  # long list
+  alias llm='eza -lbhHigUmuSa --time-style=long-iso --git --color-scale --sort=modified' # long list, sorted by modified date
+  alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale'                 # long list, extended
+
+  # Speciality views
+  alias lt='eza --tree --level=2'                                                        # tree
+fi
+
+# direnv
+if command -v direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
 
 # Clear the terminal
 clear

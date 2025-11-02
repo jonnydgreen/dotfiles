@@ -21,11 +21,27 @@
   },
   "peacock.color": "#215732",
   "cSpell.words": [
+    "cleanup",
+    "color",
+    "compinstall",
+    "direnv",
     "Dotfile",
-    "ZDOTDIR",
     "dotfiles",
+    "exercism",
+    "gnubin",
+    "GOBIN",
+    "GOPATH",
+    "helmenv",
+    "lazygit",
+    "libexec",
+    "newuser",
     "prezto",
     "projectjudge",
+    "pulumi",
+    "SAVEHIST",
+    "uuidgen",
+    "wpods",
+    "ZDOTDIR",
     "zprezto"
   ]
 }
