@@ -114,3 +114,25 @@ To update existing configurations, run:
 ```bash
 dotfiles-update
 ```
+
+### Font
+
+Download the following font and install in "Font Book":
+
+1. Goto: https://www.nerdfonts.com/font-downloads
+2. Search for and download: "RobotoMono Nerd Font"
+
+The make sure you have the following settings in ITerm:
+
+![font_settings](./font_settings.png)
+
+### Packages
+
+#### Ripdrag
+
+Install as follows:
+
+```sh
+cargo install ripdrag
+```
+

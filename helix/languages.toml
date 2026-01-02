@@ -1,0 +1,25 @@
+[[language]]
+name = "hcl"
+language-servers = [ "tofu-ls" ]
+language-id = "terraform"
+
+[[language]]
+name = "tfvars"
+language-servers = [ "tofu-ls" ]
+language-id = "terraform-vars"
+
+[language-server.tofu-ls]
+command = "tofu-ls"
+args = ["serve"]
+# config.indexing.ignorePaths = ["ignore.hcl"]
+
+# Configured to run alongside marksman.
+[[language]]
+auto-format = true
+language-servers = ["marksman", "mpls"]
+name = "markdown"
+
+[language-server.mpls]
+command = "mpls"
+config = { markdown.preview.auto = false }
+args = ["--dark-mode", "--enable-emoji", "--no-auto"]

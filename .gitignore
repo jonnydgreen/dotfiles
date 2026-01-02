@@ -1,2 +1,6 @@
 .zcompdump
 .zcompcache
+.android
+swiftpm
+helm
+k9s

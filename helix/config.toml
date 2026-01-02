@@ -1,0 +1,39 @@
+theme = "onedark"
+
+[editor]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.whitespace.render]
+space = "all"
+tab = "all"
+nbsp = "none"
+nnbsp = "none"
+newline = "none"
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+other-lines = "hint"
+
+[keys.insert]
+"C-[" = "normal_mode"
+
+[keys.normal]
+# Lazygit
+"C-g" = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+# Yazi
+"C-y" = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
+  ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+]
+# Markdown preview
+"C-m" = ":lsp-workspace-command open-preview"

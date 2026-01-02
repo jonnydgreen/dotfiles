@@ -1,3 +1,5 @@
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 # Source and init Prezto.
 if [[ -s "${HOME}/.zprezto/init.zsh" ]]; then
   source "${HOME}/.zprezto/init.zsh"
@@ -48,7 +50,6 @@ alias n="npm run --"
 alias npr="npm run --"
 alias dc="docker compose"
 alias fz="exec zsh -l"
-alias y="yarn"
 alias yw="yarn workspace"
 alias yw="yarn workspaces"
 alias g="git"
@@ -65,27 +66,28 @@ alias p="pnpm run --"
 alias uuidgen-lower="uuidgen | tr '[:upper:]' '[:lower:]'"
 alias bbi="cd && brew bundle install --cleanup && cd -"
 alias 'cd..'='cd_up';
+alias hx="hx --config ${DOTFILES_DIR}/helix/config.toml"
 
 # Editor
-export EDITOR="code"
-export KUBE_EDITOR='code --wait'
+export EDITOR="hx --config ${DOTFILES_DIR}/helix/config.toml"
+export KUBE_EDITOR="hx --config ${DOTFILES_DIR}/helix/config.toml"
 
 # Emacs key binding
 bindkey -e
 
 # PATH
-export PATH="$PATH:$HOME/developer/bin"
+export PATH="${PATH}:${HOME}/developer/bin"
 export PATH="/usr/local/opt/python/libexec/bin:${PATH}:"
-export PATH=$PATH:/usr/local/share/dotnet
-export PATH=$PATH:$GOBIN
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="${PATH}:/usr/local/share/dotnet"
+export PATH="${PATH}:${GOBIN}"
+export PATH="$HOME/.rbenv/bin:${PATH}"
+export PATH="$HOME/.cargo/bin:${PATH}"
+
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # Git
 if command -v lazygit &> /dev/null;then
   alias gg="lazygit"
-  if [[ -s "$DOTFILES_DIR" ]]; then
-    export XDG_CONFIG_HOME="$DOTFILES_DIR"
-  fi
 fi
 
 # Godot
@@ -182,7 +184,6 @@ fi
 
 # Kubectl
 if command -v kubectl &> /dev/null; then
-  export KUBE_EDITOR="vim"
   source <(kubectl completion zsh)
 fi
 
@@ -232,6 +233,52 @@ fi
 # direnv
 if command -v direnv &> /dev/null; then
   eval "$(direnv hook zsh)"
+fi
+
+# tailscale
+if command -v tailscale &> /dev/null; then
+  if [ -d "${fpath[1]}/_tailscale" ]; then
+    tailscale completion zsh > "${fpath[1]}/_tailscale"
+  fi
+fi
+
+# flux
+if command -v flux &> /dev/null; then
+  . <(flux completion zsh)
+fi
+
+# just
+if command -v just &> /dev/null; then
+  . <(just --completions zsh)
+fi
+
+# Helix
+if command -v hx &> /dev/null; then
+  HELIX_DIR="${HOME}/.config/helix"
+  mkdir -p "${HELIX_DIR}"
+  rm -f "${HELIX_DIR}/languages.toml"
+  if [ -f "${DOTFILES_DIR}/helix/languages.toml" ]; then
+    cp -f "${DOTFILES_DIR}/helix/languages.toml" "${HELIX_DIR}/languages.toml"
+  fi
+fi
+
+# yazi
+if command -v yazi &> /dev/null; then
+  export YAZI_CONFIG_HOME="${DOTFILES_DIR}/yazi"
+  function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    command yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd < "$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
+  }
+fi
+
+# Rust
+if command -v rustup-init &> /dev/null; then
+  if [ ! -f "${HOME}/.rustup/settings.toml" ]; then
+    rustup-init
+  fi
 fi
 
 # Clear the terminal
