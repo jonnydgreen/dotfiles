@@ -64,7 +64,8 @@ alias dt="deno task"
 alias d="deno"
 alias p="pnpm run --"
 alias uuidgen-lower="uuidgen | tr '[:upper:]' '[:lower:]'"
-alias bbi="cd && brew bundle install --cleanup && cd -"
+alias bbi="cd && brew bundle install && cd -"
+alias as='open -a "Android Studio"'
 alias 'cd..'='cd_up';
 alias hx="hx --config ${DOTFILES_DIR}/helix/config.toml"
 
@@ -277,7 +278,7 @@ fi
 # Rust
 if command -v rustup-init &> /dev/null; then
   if [ ! -f "${HOME}/.rustup/settings.toml" ]; then
-    rustup-init
+    # rustup-init
   fi
 fi
 

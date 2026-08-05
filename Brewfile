@@ -8,20 +8,11 @@ brew "imagemagick"
 brew "gifsicle"
 brew "librsvg"
 
-# K8s
-tap "siderolabs/tap"
-tap "derailed/k9s"
-brew "siderolabs/tap/talosctl"
-brew "talhelper"
-brew "helm"
-brew "derailed/k9s/k9s"
-brew "gnupg"
+# Useful
+brew "podman"
 brew "sops"
 brew "age"
-tap "fluxcd/tap"
-brew "fluxcd/tap/flux"
-
-# Useful
+cask "1password-cli"
 brew "gettext"
 brew "cmake"
 brew "gh"
@@ -42,6 +33,8 @@ brew "pkgconf"
 # Helix
 tap "mhersson/formulas"
 brew "helix"
+brew "typescript-language-server"
+brew "vscode-langservers-extracted"
 brew "tofu-ls"
 brew "helm-ls"
 brew "marksman"
@@ -59,10 +52,9 @@ cask "font-symbols-only-nerd-font"
 brew "fastlane"
 brew "cocoapods"
 brew "watchman"
-
-# React Native:detox
 tap "wix/brew" # detox
-brew "applesimutils" # detox
+brew "wix/brew/applesimutils"
+brew "scrcpy"
 
 # React Native:maestro
 tap "mobile-dev-inc/tap"
@@ -70,6 +62,12 @@ brew "maestro"
 
 # Android
 cask "zulu@17"
+
+# Mobile testing
+tap "mobile-dev-inc/tap" || true # Maestro
+brew "maestro"                   # Maestro
+brew "openjdk"
+brew "libimobiledevice"
 
 # Vscode
 vscode "adpyke.vscode-sql-formatter"

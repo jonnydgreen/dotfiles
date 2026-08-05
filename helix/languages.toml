@@ -23,3 +23,78 @@ name = "markdown"
 command = "mpls"
 config = { markdown.preview.auto = false }
 args = ["--dark-mode", "--enable-emoji", "--no-auto"]
+
+
+[[language]]
+name = "javascript"
+language-servers = [
+  "typescript-language-server", # optional
+  "vscode-eslint-language-server",
+]
+[[language]]
+name = "jsx"
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+]
+
+[[language]]
+name = "typescript"
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+]
+[[language]]
+name = "tsx"
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+]
+# Ref: https://github.com/helix-editor/helix/wiki/Language-Server-Configurations#eslint
+# [[language]]
+# name = "javascript"
+# language-servers = [
+#   "typescript-language-server", # optional
+#   "vscode-eslint-language-server",
+# ]
+# [[language]]
+# name = "jsx"
+# language-servers = [
+#   "typescript-language-server",
+#   "vscode-eslint-language-server",
+# ]
+
+# [[language]]
+# name = "typescript"
+# language-servers = [
+#   "typescript-language-server",
+#   "vscode-eslint-language-server",
+#   # "eslint",
+# ]
+# [[language]]
+# name = "tsx"
+# language-servers = [
+#   "typescript-language-server",
+#   "vscode-eslint-language-server",
+#   # "eslint",
+# ]
+
+# # # ESLint LSP config
+# # [language-server.eslint]
+# command = "vscode-eslint-language-server"
+# args = ["--stdio"]
+
+# [language-server.eslint.config]
+# nodePath = ""
+# validate = "on"
+# problems = { shortenToSingleLine = false }
+# run = "onType"
+# rulesCustomizations = []
+# experimental = {}
+# # These options might be useful later when Helix supports more LSP features
+# # format = { enable = true }
+# # codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
+
+# [language-server.eslint.config.codeAction]
+# disableRuleComment = { enable = true, location = "separateLine" }
+# showDocumentation = { enable = false }
