@@ -215,6 +215,7 @@ if command -v fzf &> /dev/null; then
   export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --extended ${FZF_THEME}"
   export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow --exclude .git"
   export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
+  export FZF_CTRL_T_OPTS="${FZF_DEFAULT_OPTS} --preview 'bat --style=plain --color=always --line-range :50 {}'"
   export FZF_ALT_C_COMMAND="fd --type directory --hidden"
 fi
 
@@ -223,7 +224,8 @@ if command -v eza &> /dev/null; then
   # General use
   alias ls='eza -1'                                                                      # 1 column just names
   alias l='eza -lbF --git'                                                               # list, size, type, git
-  alias ll='eza -lbhHigUmuSa --time-style=long-iso --git --color-scale'                  # long list
+  alias ll='eza -lbF --git'                                                              # list, size, type, git
+  alias lla='eza -lbhHigUmuSa --time-style=long-iso --git --color-scale'                 # long list
   alias llm='eza -lbhHigUmuSa --time-style=long-iso --git --color-scale --sort=modified' # long list, sorted by modified date
   alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale'                 # long list, extended
 
@@ -282,5 +284,14 @@ if command -v rustup-init &> /dev/null; then
   fi
 fi
 
+# Mise
+if command -v mise &> /dev/null; then
+  source <(command mise activate zsh)
+fi
+
+# MakeMKV
+export PATH=/Applications/MakeMKV.app/Contents/MacOS/:$PATH
+
 # Clear the terminal
 clear
+export PATH=$PATH:$HOME/.maestro/bin

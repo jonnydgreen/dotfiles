@@ -1,23 +1,84 @@
 [[language]]
 name = "hcl"
-language-servers = [ "tofu-ls" ]
+language-servers = ["tofu-ls"]
 language-id = "terraform"
+auto-format = true
+
 
 [[language]]
 name = "tfvars"
-language-servers = [ "tofu-ls" ]
+language-servers = ["tofu-ls"]
 language-id = "terraform-vars"
+auto-format = true
+
+
+# Configured to run alongside marksman.
+[[language]]
+name = "markdown"
+language-servers = ["marksman", "mpls", "vscode-eslint-language-server"]
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "markdown"] }
+
+
+[[language]]
+name = "javascript"
+file-types = ["js", "jsx", "mjs"]
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+]
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "babel"] }
+
+
+[[language]]
+name = "jsx"
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+]
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "babel"] }
+
+
+[[language]]
+name = "typescript"
+file-types = ["ts", "tsx", "mts"]
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+]
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+
+[[language]]
+name = "tsx"
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+]
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+
+[[language]]
+name = "toml"
+auto-format = true
+formatter = { command = "taplo", args = ["fmt", "-"] }
+
+
+[[language]]
+name = "nix"
+auto-format = true
+formatter = { command = "nixfmt" }
+
 
 [language-server.tofu-ls]
 command = "tofu-ls"
 args = ["serve"]
 # config.indexing.ignorePaths = ["ignore.hcl"]
 
-# Configured to run alongside marksman.
-[[language]]
-auto-format = true
-language-servers = ["marksman", "mpls"]
-name = "markdown"
 
 [language-server.mpls]
 command = "mpls"

@@ -1,7 +1,6 @@
 # Required
 brew "direnv"
 
-
 # Images
 brew "ffmpeg"
 brew "imagemagick"
@@ -9,10 +8,12 @@ brew "gifsicle"
 brew "librsvg"
 
 # Useful
+brew "bat"
 brew "podman"
-brew "sops"
 brew "age"
 cask "1password-cli"
+brew "eye-d3"
+brew "id3v2"
 brew "gettext"
 brew "cmake"
 brew "gh"
@@ -57,8 +58,7 @@ brew "wix/brew/applesimutils"
 brew "scrcpy"
 
 # React Native:maestro
-tap "mobile-dev-inc/tap"
-brew "maestro"
+cask "maestro"
 
 # Android
 cask "zulu@17"
@@ -70,7 +70,6 @@ brew "openjdk"
 brew "libimobiledevice"
 
 # Vscode
-vscode "adpyke.vscode-sql-formatter"
 vscode "akamud.vscode-theme-onedark"
 vscode "bierner.markdown-mermaid"
 vscode "bradlc.vscode-tailwindcss"
@@ -81,15 +80,12 @@ vscode "docker.docker"
 vscode "eamodio.gitlens"
 vscode "esbenp.prettier-vscode"
 vscode "expo.vscode-expo-tools"
-vscode "firsttris.vscode-jest-runner"
 vscode "geequlim.godot-tools"
-vscode "github.vscode-github-actions"
 vscode "graphql.vscode-graphql"
 vscode "graphql.vscode-graphql-syntax"
 vscode "gruntfuggly.todo-tree"
 vscode "mechatroner.rainbow-csv"
 vscode "mrorz.language-gettext"
-vscode "ms-vsliveshare.vsliveshare"
 vscode "nefrob.vscode-just-syntax"
 vscode "OpenTofu.vscode-opentofu"
 vscode "pkief.material-icon-theme"
@@ -99,4 +95,3 @@ vscode "redhat.vscode-yaml"
 vscode "simonsiefke.svg-preview"
 vscode "streetsidesoftware.code-spell-checker"
 vscode "yzhang.markdown-all-in-one"
-vscode "jasew.vscode-helix-emulation"
