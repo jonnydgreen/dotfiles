@@ -54,8 +54,6 @@ cask "font-symbols-only-nerd-font"
 brew "fastlane"
 brew "cocoapods"
 brew "watchman"
-tap "wix/brew" # detox
-brew "wix/brew/applesimutils"
 brew "scrcpy"
 
 # React Native:maestro
