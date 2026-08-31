@@ -30,6 +30,7 @@ brew "watch"
 brew "rustup"
 brew "gtk4"
 brew "pkgconf"
+brew "git-lfs"
 
 # Helix
 tap "mhersson/formulas"
