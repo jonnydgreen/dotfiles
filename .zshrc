@@ -292,6 +292,17 @@ fi
 # MakeMKV
 export PATH=/Applications/MakeMKV.app/Contents/MacOS/:$PATH
 
+# Nix
+fix_nix_after_macos_update() {
+  sudo tee -a /etc/zshrc << 'EOL'
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
+EOL
+}
+
 # Clear the terminal
 clear
 export PATH=$PATH:$HOME/.maestro/bin
