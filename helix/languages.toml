@@ -1,3 +1,20 @@
+[language-server.oxlint]
+command = "oxlint"
+args = ["--lsp"]
+
+
+[language-server.tofu-ls]
+command = "tofu-ls"
+args = ["serve"]
+# config.indexing.ignorePaths = ["ignore.hcl"]
+
+
+[language-server.mpls]
+command = "mpls"
+config = { markdown.preview.auto = false }
+args = ["--dark-mode", "--enable-emoji", "--no-auto"]
+
+
 [[language]]
 name = "hcl"
 language-servers = ["tofu-ls"]
@@ -15,51 +32,39 @@ auto-format = true
 # Configured to run alongside marksman.
 [[language]]
 name = "markdown"
-language-servers = ["marksman", "mpls", "vscode-eslint-language-server"]
+language-servers = ["marksman", "mpls", "oxlint"]
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "markdown"] }
+formatter = { command = "oxfmt", args = ["--stdin-filepath=file.md"] }
 
 
 [[language]]
 name = "javascript"
 file-types = ["js", "jsx", "mjs"]
-language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-]
+language-servers = ["typescript-language-server", "oxlint"]
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "babel"] }
+formatter = { command = "oxfmt", args = ["--stdin-filepath=file.js"] }
 
 
 [[language]]
 name = "jsx"
-language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-]
+language-servers = ["typescript-language-server", "oxlint"]
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "babel"] }
+formatter = { command = "oxfmt", args = ["--stdin-filepath=file.jsx"] }
 
 
 [[language]]
 name = "typescript"
 file-types = ["ts", "tsx", "mts"]
-language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-]
+language-servers = ["typescript-language-server", "oxlint"]
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
+formatter = { command = "oxfmt", args = ["--stdin-filepath=file.ts"] }
 
 
 [[language]]
 name = "tsx"
-language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-]
+language-servers = ["typescript-language-server", "oxlint"]
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
+formatter = { command = "oxfmt", args = ["--stdin-filepath=file.tsx"] }
 
 
 [[language]]
@@ -74,88 +79,24 @@ auto-format = true
 formatter = { command = "nixfmt" }
 
 
-[language-server.tofu-ls]
-command = "tofu-ls"
-args = ["serve"]
-# config.indexing.ignorePaths = ["ignore.hcl"]
-
-
-[language-server.mpls]
-command = "mpls"
-config = { markdown.preview.auto = false }
-args = ["--dark-mode", "--enable-emoji", "--no-auto"]
-
-
 [[language]]
 name = "javascript"
 language-servers = [
   "typescript-language-server", # optional
-  "vscode-eslint-language-server",
+  "oxlint",
 ]
+
+
 [[language]]
 name = "jsx"
-language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-]
+language-servers = ["typescript-language-server", "oxlint"]
+
 
 [[language]]
 name = "typescript"
-language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-]
+language-servers = ["typescript-language-server", "oxlint"]
+
+
 [[language]]
 name = "tsx"
-language-servers = [
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-]
-# Ref: https://github.com/helix-editor/helix/wiki/Language-Server-Configurations#eslint
-# [[language]]
-# name = "javascript"
-# language-servers = [
-#   "typescript-language-server", # optional
-#   "vscode-eslint-language-server",
-# ]
-# [[language]]
-# name = "jsx"
-# language-servers = [
-#   "typescript-language-server",
-#   "vscode-eslint-language-server",
-# ]
-
-# [[language]]
-# name = "typescript"
-# language-servers = [
-#   "typescript-language-server",
-#   "vscode-eslint-language-server",
-#   # "eslint",
-# ]
-# [[language]]
-# name = "tsx"
-# language-servers = [
-#   "typescript-language-server",
-#   "vscode-eslint-language-server",
-#   # "eslint",
-# ]
-
-# # # ESLint LSP config
-# # [language-server.eslint]
-# command = "vscode-eslint-language-server"
-# args = ["--stdio"]
-
-# [language-server.eslint.config]
-# nodePath = ""
-# validate = "on"
-# problems = { shortenToSingleLine = false }
-# run = "onType"
-# rulesCustomizations = []
-# experimental = {}
-# # These options might be useful later when Helix supports more LSP features
-# # format = { enable = true }
-# # codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
-
-# [language-server.eslint.config.codeAction]
-# disableRuleComment = { enable = true, location = "separateLine" }
-# showDocumentation = { enable = false }
+language-servers = ["typescript-language-server", "oxlint"]
